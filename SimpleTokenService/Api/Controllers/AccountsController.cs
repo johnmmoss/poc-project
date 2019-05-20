@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SimpleTokenService.Api;
@@ -48,5 +49,16 @@ namespace Api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
+        [Authorize]
+        [Route("")]
+        [HttpGet]
+        public async Task<IActionResult> Get ()
+        {
+            var users = await _userService.GetAllAsync();
+
+            return Ok(users); 
+        }
+
     }
 }

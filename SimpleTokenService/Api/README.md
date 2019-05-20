@@ -16,7 +16,7 @@ If you want to set a password of **Password1!** you can use the following string
 ADbCom4SGXj48MvTVjSQv/x0D68YQAJusz8qPIjLC8hhyn1YaftQ51UwlnLffRfOhA==
 ```
 
-### Request
+### Signin Request
 
 ```
 POST https://localhost:44377/api/accounts/signin?email=johnmmoss@gmail.com&password=Password1! HTTP/1.1
@@ -25,7 +25,7 @@ Host: localhost:44377
 Content-Length: 0
 ```
 
-### Response
+### Signin Response
 
 ```
 HTTP/1.1 200 OK
@@ -39,3 +39,16 @@ Date: Sat, 18 May 2019 21:09:01 GMT
 {"token":"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2hubW1vc3NAZ21haWwuY29tIiwibmJmIjoxNTU4MjEzNzI2LCJleHAiOjE1NTgyMTQwMjYsImlzcyI6IkFDTUUiLCJhdWQiOiJldmVyeW9uZSJ9.GmKluj_h8V_JwcEtR6wEpDhnw_sTY_eGbfhUC0bLMkU","expires":"300"}
 ```
 
+
+### Authorised Request
+
+We call a get on the accounts endpoint which should return ALL users in the database.
+
+```
+GET https://localhost:44377/api/accounts HTTP/1.1
+User-Agent: Fiddler
+Content-Type: application/x-www-form-urlencoded
+Host: localhost:44377
+Content-Length: 0
+Authorization: bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2hubW1vc3NAZ21haWwuY29tIiwibmJmIjoxNTU4MzY1NjA2LCJleHAiOjE1NTgzNjU5MDYsImlzcyI6IkFDTUUiLCJhdWQiOiJldmVyeW9uZSJ9.cdXOdUjUe0UNWoS0hGc-IcFCdAMIGFJCdu8eEjNx5SE
+```

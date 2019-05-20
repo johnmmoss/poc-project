@@ -9,6 +9,6 @@ namespace SimpleTokenService.Api
     {
         Task<string> Authenticate(string email, string password);
 
-        Task<IEnumerable<User>> GetAll();
+        Task<IEnumerable<User>> GetAllAsync();
     }
 }

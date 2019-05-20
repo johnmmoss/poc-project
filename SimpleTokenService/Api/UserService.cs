@@ -42,8 +42,7 @@ namespace SimpleTokenService.Api
                 //new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(now).ToString(), ClaimValueTypes.Integer64)
              };
 
-            var key = Encoding.ASCII.GetBytes("cffad38e-b5de-436b-b66c-ee9ad370801a");
-            var signingKey = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
+            var signingKey = new SigningCredentials(Security.SymmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature);
             var now = DateTime.Now;
 
             var jwt = new JwtSecurityToken(
@@ -57,7 +56,7 @@ namespace SimpleTokenService.Api
             return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
-        public async Task<IEnumerable<User>> GetAll()
+        public async Task<IEnumerable<User>> GetAllAsync()
         {
             return await _context.Users.ToListAsync();
         }
