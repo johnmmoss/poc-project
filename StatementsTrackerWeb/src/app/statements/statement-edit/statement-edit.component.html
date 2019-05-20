@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-lg-3">
+  </div>
+  <div class="col-lg-9">
+    <h1 class="mt-5">Add Payment</h1>
+    <p class="lead">Add a payment to your April Statement</p>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-lg-3"> &nbsp; </div>
+
+  <div class="col-lg-6">
+
+    <form #form="ngForm" (submit)="onSubmit(form)">
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input class="form-control" id="description" name="description" [(ngModel)]="payment.description"
+          #descriptionField="ngModel" required [class.field-error]="form.submitted && descriptionField.invalid" />
+        <!--div [hidden]="descriptionField.valid || descriptionField.untouched" -->
+        <div [hidden]="!form.submitted || descriptionField.valid" class="alert alert-danger">
+          Description is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input class="form-control" id="amount" name="amount" [(ngModel)]="payment.amount" />
+      </div>
+
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="isMonthlyPayment" name="isMonthlyPayment"
+          [(ngModel)]="payment.isMonthlyPayment" />
+        <label class="form-check-label" for="isMonthlyPayment">Is monthly payment?</label>
+      </div>
+
+      <p>Payment Type</p>
+
+      <div class="form-group">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="debitOrCredit" id="debitRadio" value="debit"
+            [(ngModel)]="payment.debitOrCredit" />
+          <label class="form-check-label" for="debitRadio">Debit</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="debitOrCredit" id="creditRadio" value="credit"
+            [(ngModel)]="payment.debitOrCredit" />
+          <label class="form-check-label" for="creditRadio">Credit</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="paymentMethodSelect">Payment Method</label>
+        <select class="form-control" id="paymentMethod" name="paymentMethod" [(ngModel)]="payment.paymentMethod">
+          <option>-- select --</option>
+          <option>Direct Debit</option>
+          <option>Debit Card</option>
+          <option>Bank Transfer</option>
+          <option>Cheque</option>
+        </select>
+      </div>
+
+      <button type="Save" class="btn btn-primary">Submit</button>
+    </form>
+
+    {{ payment | json}}
+
+  </div>
+  <div class="col-lg-3"> &nbsp; </div>
+</div>
