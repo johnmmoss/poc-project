@@ -8,12 +8,18 @@ import { AppComponent } from './app.component';
 import { StatementEditComponent } from './statements/statement-edit/statement-edit.component';
 import { LoginComponent } from './user-management/login/login.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { HomePageComponent } from './shared/home-page/home-page.component';
+import { AboutComponent } from './shared/about/about.component';
+import { ContactComponent } from './shared/contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StatementEditComponent,
-    LoginComponent
+    LoginComponent,
+    HomePageComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
