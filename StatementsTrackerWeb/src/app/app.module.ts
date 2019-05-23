@@ -11,6 +11,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HomePageComponent } from './shared/home-page/home-page.component';
 import { AboutComponent } from './shared/about/about.component';
 import { ContactComponent } from './shared/contact/contact.component';
+import { UserService } from './user-management/user.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { ContactComponent } from './shared/contact/contact.component';
     AngularFontAwesomeModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

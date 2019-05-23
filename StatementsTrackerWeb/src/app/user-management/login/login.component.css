@@ -50,3 +50,6 @@
     font-weight: 600;
     text-decoration: none;
 }
+.field-error {
+    border: 1px solid red;
+}

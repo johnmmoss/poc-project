@@ -3,12 +3,18 @@
     <div class="col-md-3">&nbsp;</div>
     <div class="col-md-6 login-form-1">
       <h3>Login</h3>
-      <form>
+      <form #form="ngForm" (submit)="login(form)">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Your Email *" value="" />
+          <input type="text" class="form-control" 
+            name="emailAddress" value="" [(ngModel)]="userLogin.emailAddress" 
+            required placeholder="Your Email *" 
+            #emailField="ngModel" [class.field-error]="form.submitted && emailField.invalid" />
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" placeholder="Your Password *" value="" />
+          <input type="password" class="form-control" 
+              name="password" value="" [(ngModel)]="userLogin.password" 
+              required placeholder="Your Password *" 
+              #passwordField="ngModel" [class.field-error]="form.submitted && passwordField.invalid" />
         </div>
         <div class="form-group text-right">
           <a href="#" class="ForgetPwd">Forget Password?</a> &nbsp;
@@ -17,6 +23,9 @@
         <div class="form-group">
         </div>
       </form>
+      <div *ngIf="authFailed" class="alert alert-danger">
+        The email and/or password are incorrect!
+      </div>
     </div>
     <div class="col-md-3">&nbsp;</div>
   </div>

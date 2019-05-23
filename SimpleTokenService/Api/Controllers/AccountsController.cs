@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SimpleTokenService.Api;
+using SimpleTokenService.Api.Models.Requests;
 using SimpleTokenService.Api.Models.Responses;
 
 namespace Api.Controllers
@@ -23,21 +22,20 @@ namespace Api.Controllers
 
         [Route("signin")]
         [HttpPost]
-        public async Task<IActionResult> SignIn(string email, string password)
+        public async Task<IActionResult> SignIn([FromBody] SignInRequest request )
         {
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            if (!ModelState.IsValid)
             {
                 return StatusCode(StatusCodes.Status400BadRequest);
             }
 
             try
             {
-                var token = await _userService.Authenticate(email, password);
+                var token = await _userService.Authenticate(request.EmailAddress, request.Password);
 
-                if (token == null) return StatusCode(StatusCodes.Status401Unauthorized);
-
-                var response = new TokenResponse()
+                var response = new SignInResponse()
                 {
+                    Success = token != null,
                     Token = token,
                     Expires = "300"
                 };
