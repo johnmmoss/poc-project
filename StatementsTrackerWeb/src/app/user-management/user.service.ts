@@ -43,14 +43,18 @@ export class UserService {
     const decodedToken = jwtHelperService.decodeToken(token);
 
     this.securityObject.isAuthenticated = decodedToken != null; 
-    this.securityObject.emailAddress = decodedToken.sub;
-    this.securityObject.accessToken = token;
 
-    // Fudge these for now
-    this.securityObject.canAddUsers = true;
-    this.securityObject.canAddStatements = true;
+    if (this.securityObject.isAuthenticated) {
 
-    localStorage.setItem("accessToken", token);
+      this.securityObject.emailAddress = decodedToken.sub;
+      this.securityObject.accessToken = token;
+
+      // Fudge these for now
+      this.securityObject.canAddUsers = true;
+      this.securityObject.canAddStatements = true;
+
+      localStorage.setItem("accessToken", token);
+    }
   }
 
   resetSecurityObject(): void {

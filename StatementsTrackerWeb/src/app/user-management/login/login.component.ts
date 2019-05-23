@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
 
   login(form:NgForm) {
 
+    this.authFailed = false;
+
     console.log("username:"+this.userLogin.emailAddress)
     console.log("password:"+this.userLogin.password)
 
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit {
           if (securityObject.isAuthenticated) {
             this.router.navigate(['/home']);
           } else {
-            this.authFailed = securityObject.isAuthenticated;
+            this.authFailed = !securityObject.isAuthenticated;
           }
         },
         error => console.log(error)
