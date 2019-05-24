@@ -17,7 +17,12 @@ export class UserService {
 
   constructor(
     private httpClient: HttpClient
-  ) { }
+  ) { 
+
+    var rawToken = localStorage.getItem("accessToken")
+    this.buildSecurityObject(rawToken);
+    console.log("rawToken:" + rawToken);
+  }
 
   login(userLogin: UserLogin): Observable<UserAuth> {
 
