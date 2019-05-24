@@ -56,13 +56,3 @@ Host: localhost:44377
 Content-Length: 0
 Authorization: bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2hubW1vc3NAZ21haWwuY29tIiwibmJmIjoxNTU4MzY1NjA2LCJleHAiOjE1NTgzNjU5MDYsImlzcyI6IkFDTUUiLCJhdWQiOiJldmVyeW9uZSJ9.cdXOdUjUe0UNWoS0hGc-IcFCdAMIGFJCdu8eEjNx5SE
 ```
-
-## Notes/TODOS
-
-* Validation on the login form so you cant submit a blank form.
-** Could disable the submit button until email is valid address
-* UPdate api to return success or fail flag.
-* Add data to db (laptop) and get the logged in user working.
-* Add a registration page so new users can register
-* Add http interceptor for 401 as per  examples
-* Reset/Forgotten password screens
