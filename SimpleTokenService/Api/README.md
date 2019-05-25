@@ -7,6 +7,12 @@ A simple token service using Asp.Net Identity.
 This application is written in dotnet core 2.2:
 * Use runtime version **SDK 2.2.107** and **Runtime 2.2.5** see [.NET Core 2.2 Downloads](https://dotnet.microsoft.com/download/dotnet-core/2.2)
 * Debug in IIS on url *http://localhost/StatementsTracker.Api* (debug profile needs to be created manually)
+* Run ef database update to setup data:
+```
+update-database -Project Data -StartupProject Web
+```
+* Then execute **Users.sql** to get a test user in the database.
+
 
 ### References:
 
