@@ -72,4 +72,8 @@ export class UserService {
 
     localStorage.removeItem("accessToken");
   }
+
+  logOff(): void {
+    this.resetSecurityObject();
+  }
 }

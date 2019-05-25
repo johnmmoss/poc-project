@@ -22,15 +22,11 @@ export class LoginComponent implements OnInit {
     { }
 
   ngOnInit() {
-    console.log("login.component loaded!")
   }
 
   login(form:NgForm) {
 
     this.authFailed = false;
-
-    console.log("username:"+this.userLogin.emailAddress)
-    console.log("password:"+this.userLogin.password)
 
     if (form.valid) {
       this.userService.login(this.userLogin).subscribe(
