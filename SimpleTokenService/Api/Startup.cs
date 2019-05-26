@@ -17,6 +17,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SimpleTokenService.Data;
 using SimpleTokenService.Data.Entities;
+using SimpleTokenService.Domain;
 
 namespace SimpleTokenService.Api
 {
@@ -38,6 +39,11 @@ namespace SimpleTokenService.Api
             // Not fecking working :P
             //var appSettingsSection = Configuration.GetSection("AppSettings");
             //services.Configure<AppSettings>(appSettingsSection);
+
+            // TODO:- Fix this up to use log4net
+            services.AddLogging(config =>
+                config.AddConsole().AddDebug()
+                );
 
             var connectionString = "Server=(local)\\sqlexpress;Initial Catalog=SimpleTokenService;Persist Security Info=False; integrated security=True";
             services.AddDbContext<TokenContext>(o => o.UseSqlServer(connectionString));
@@ -65,6 +71,8 @@ namespace SimpleTokenService.Api
            });
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IStatementService, StatementService>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
