@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace SimpleTokenService.Api
+namespace SimpleTokenService.Domain.Core
 {
     public static class Security
     {    

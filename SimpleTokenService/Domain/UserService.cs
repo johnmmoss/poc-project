@@ -4,6 +4,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SimpleTokenService.Data;
 using SimpleTokenService.Data.Entities;
+using SimpleTokenService.Domain.Core;
+using SimpleTokenService.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -12,7 +14,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleTokenService.Api
+namespace SimpleTokenService.Domain
 {
     public class UserService : IUserService
     {

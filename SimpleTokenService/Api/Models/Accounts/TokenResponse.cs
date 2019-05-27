@@ -1,4 +1,4 @@
-﻿namespace SimpleTokenService.Api.Models.Responses
+﻿namespace SimpleTokenService.Api.Models.Accounts
 {
     public class SignInResponse
     {

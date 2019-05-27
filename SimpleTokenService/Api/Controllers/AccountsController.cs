@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SimpleTokenService.Api;
-using SimpleTokenService.Api.Models.Requests;
-using SimpleTokenService.Api.Models.Responses;
+using SimpleTokenService.Api.Models.Accounts;
+using SimpleTokenService.Domain.Interfaces;
 
 namespace Api.Controllers
 {

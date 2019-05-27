@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SimpleTokenService.Api.Models.Requests
+namespace SimpleTokenService.Api.Models.Accounts
 {
     public class SignInRequest
     {

@@ -18,6 +18,8 @@ using Microsoft.IdentityModel.Tokens;
 using SimpleTokenService.Data;
 using SimpleTokenService.Data.Entities;
 using SimpleTokenService.Domain;
+using SimpleTokenService.Domain.Core;
+using SimpleTokenService.Domain.Interfaces;
 
 namespace SimpleTokenService.Api
 {

@@ -1,4 +1,4 @@
-﻿namespace SimpleTokenService.Api
+﻿namespace SimpleTokenService.Domain.Core
 {
     public class AppSettings
     {
