@@ -9,9 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{454C6083-F152-4B43-B70D-1FE81BB76EA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Integration.Tests", "Api.Integration.Tests\Api.Integration.Tests.csproj", "{9E1AA1ED-C544-401B-887D-AD5C97016E7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Integration.Tests", "Api.Integration.Tests\Api.Integration.Tests.csproj", "{9E1AA1ED-C544-401B-887D-AD5C97016E7E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DC5C7E59-9CF6-4041-A8E9-AB8F4A91D98B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E9F51C83-81DC-47AC-8BD2-B309FC1A6C51}"
+	ProjectSection(SolutionItems) = preProject
+		fiddler.saz = fiddler.saz
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
