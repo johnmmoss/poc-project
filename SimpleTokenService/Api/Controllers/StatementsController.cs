@@ -30,6 +30,8 @@ namespace SimpleTokenService.Api.Controllers
             var usStartDate = request.StartDate.Value;
             var usEndDate = request.EndDate.Value;
 
+            // TODO:- Validate request email address againest bearer token email address.
+            
             var newStatement = new Statement()
             {
                 Title = request.Title,
@@ -42,7 +44,7 @@ namespace SimpleTokenService.Api.Controllers
             {
                 _logger.LogDebug("Adding new Statement...");
 
-                await _statementService.Add(newStatement);
+                await _statementService.Add(request.Email, newStatement);
             }
             catch (Exception ex)
             {

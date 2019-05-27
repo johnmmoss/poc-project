@@ -5,6 +5,6 @@ namespace SimpleTokenService.Domain
 {
     public interface IStatementService
     {
-        Task Add(Statement statement);
+        Task Add(string email, Statement statement);
     }
 }

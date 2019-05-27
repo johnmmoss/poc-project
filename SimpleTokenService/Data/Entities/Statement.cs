@@ -10,6 +10,9 @@ namespace SimpleTokenService.Data.Entities
         [Key]
         public int Id { get; set; }
 
+        public int UserId { get; set; }
+        public User User { get; set; }
+
         public ICollection<Payment> Payments { get; set; }
 
         [Required]

@@ -227,7 +227,11 @@ namespace SimpleTokenService.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<int>("UserId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Statements");
                 });
@@ -347,6 +351,14 @@ namespace SimpleTokenService.Data.Migrations
                     b.HasOne("SimpleTokenService.Data.Entities.PaymentType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeEnum")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SimpleTokenService.Data.Entities.Statement", b =>
+                {
+                    b.HasOne("SimpleTokenService.Data.Entities.User", "User")
+                        .WithMany("Statements")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
