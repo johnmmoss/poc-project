@@ -6,7 +6,7 @@ namespace SimpleTokenService.Api.Models.Statements
     public class StatementAddRequest
     {
         [Required]
-        public string Email { get; set; }
+        public string EmailAddress { get; set; }
 
         [Required]
         [MaxLength(100)]
