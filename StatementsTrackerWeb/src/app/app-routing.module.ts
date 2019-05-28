@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './user-management/login/login.component';
-import { StatementEditComponent } from './statements/statement-edit/statement-edit.component';
 import { HomePageComponent } from './shared/home-page/home-page.component';
 import { AboutComponent } from './shared/about/about.component';
 import { ContactComponent } from './shared/contact/contact.component';
 import { StatementListComponent } from './statements/statement-list/statement-list.component';
 import { StatementAddComponent } from './statements/statement-add/statement-add.component';
+import { StatementEditComponent } from './statements/statement-edit/statement-edit.component';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},

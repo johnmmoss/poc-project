@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { UserService } from 'src/app/user-management/user.service';
+import { StatementService } from '../statement.service';
+import { Statement } from '../statement';
 
 @Component({
   selector: 'app-statement-add',
@@ -7,9 +11,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatementAddComponent implements OnInit {
 
-  constructor() { }
+  statement:Statement = {
+    title : "",
+    startDate: new Date(),
+    endDate: new Date(),
+    openingBalance:null
+  };
 
+  constructor(
+    private userService:UserService,
+    private statementService:StatementService
+  ) { }
   ngOnInit() {
+
   }
 
+  onSubmit(form: NgForm) {
+
+    console.log('onSubmit:', form.valid)
+
+    if (form.valid) {
+      console.log("Whoop! Form is ready for launch.")
+    } else {
+      console.log("Whoops... Euston we have an invalid form :(")
+    }
+
+    // this.statementService.post(this.statement).subscribe(
+    //   result => console.log('success: ', result),
+    //   error => console.log('error: ', error),
+    // );
+  }
 }

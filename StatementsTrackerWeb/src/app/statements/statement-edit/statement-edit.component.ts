@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Payment } from '../payment';
+import { Payment } from '../../payments/payment';
 import { StatementService } from '../statement.service';
 import { NgForm } from '@angular/forms';
 

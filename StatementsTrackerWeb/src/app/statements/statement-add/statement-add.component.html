@@ -6,3 +6,55 @@
     <p class="lead">Create a new statment to track you spending</p>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-lg-3"> &nbsp; </div>
+  <div class="col-lg-6">
+
+    <form #form="ngForm" (submit)="onSubmit(form)">
+      
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" id="title" name="title" [(ngModel)]="statement.title"
+          #statementField="ngModel" required [class.field-error]="form.submitted && statementField.invalid" />
+        <div [hidden]="!form.submitted || statementField.valid" class="alert alert-danger">
+          Title is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input class="form-control" id="startDate" name="startDate" [(ngModel)]="statement.startDate"
+          #startDateField="ngModel" required [class.field-error]="form.submitted && startDateField.invalid" />
+        <!--div [hidden]="startDateField.valid || startDateField.untouched" -->
+        <div [hidden]="!form.submitted || startDateField.valid" class="alert alert-danger">
+          Start Date is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input class="form-control" id="endDate" name="endDate" [(ngModel)]="statement.endDate"
+          #endDateField="ngModel" required [class.field-error]="form.submitted && endDateField.invalid" />
+        <!--div [hidden]="endDateField.valid || endDateField.untouched" -->
+        <div [hidden]="!form.submitted || endDateField.valid" class="alert alert-danger">
+          End Date is required
+        </div>
+      </div>
+
+       <div class="form-group">
+        <label for="openingBalance">Opening Balance</label>
+        <input class="form-control" id="openingBalance" name="openingBalance" [(ngModel)]="statement.openingBalance"
+          #openingBalanceField="ngModel" required [class.field-error]="form.submitted && openingBalanceField.invalid" />
+        <!--div [hidden]="openingBalanceField.valid || openingBalanceField.untouched" -->
+        <div [hidden]="!form.submitted || openingBalanceField.valid" class="alert alert-danger">
+          Opening Balance is required
+        </div>
+      </div>
+
+
+      <button type="Save" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+</div>
+  
