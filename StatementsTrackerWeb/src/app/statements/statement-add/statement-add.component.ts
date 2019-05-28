@@ -13,8 +13,8 @@ export class StatementAddComponent implements OnInit {
 
   statement:Statement = {
     title : "",
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: null, 
+    endDate: null, 
     openingBalance:null
   };
 

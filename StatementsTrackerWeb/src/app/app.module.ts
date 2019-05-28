@@ -16,6 +16,8 @@ import { StatementAddComponent } from './statements/statement-add/statement-add.
 import { PaymentAddComponent } from './payments/payment-add/payment-add.component';
 import { PaymentListComponent } from './payments/payment-list/payment-list.component';
 import { StatementListComponent } from './statements/statement-list/statement-list.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { StatementListComponent } from './statements/statement-list/statement-li
     AppRoutingModule,
     FormsModule,
     AngularFontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     UserService

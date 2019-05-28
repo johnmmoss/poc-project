@@ -37,9 +37,9 @@ export class StatementEditComponent implements OnInit {
   onSubmit(form: NgForm) {
     console.log('onSubmit:', form.valid)
 
-    this.statementService.post(this.payment).subscribe(
-      result => console.log('success: ', result),
-      error => console.log('error: ', error),
-    );
+    //this.statementService.post(.payment).subscribe(
+    //  result => console.log('success: ', result),
+    //  error => console.log('error: ', error),
+    //);
   }
 }

@@ -25,8 +25,9 @@
       <div class="form-group">
         <label for="startDate">Start Date</label>
         <input class="form-control" id="startDate" name="startDate" [(ngModel)]="statement.startDate"
-          #startDateField="ngModel" required [class.field-error]="form.submitted && startDateField.invalid" />
-        <!--div [hidden]="startDateField.valid || startDateField.untouched" -->
+          #startDateField="ngModel" required [class.field-error]="form.submitted && startDateField.invalid"
+          placeholder="dd/mm/yyyy"
+          bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" />
         <div [hidden]="!form.submitted || startDateField.valid" class="alert alert-danger">
           Start Date is required
         </div>
@@ -35,9 +36,12 @@
       <div class="form-group">
         <label for="endDate">End Date</label>
         <input class="form-control" id="endDate" name="endDate" [(ngModel)]="statement.endDate"
-          #endDateField="ngModel" required [class.field-error]="form.submitted && endDateField.invalid" />
+          #endDateField="ngModel" required [class.field-error]="form.submitted && endDateField.invalid" 
+          placeholder="dd/mm/yyyy"
+          bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" />
+
         <!--div [hidden]="endDateField.valid || endDateField.untouched" -->
-        <div [hidden]="!form.submitted || endDateField.valid" class="alert alert-danger">
+        <div [hidden]="!form.submitted || endDateField.valid" class="alert alert-danger alert-error">
           End Date is required
         </div>
       </div>
