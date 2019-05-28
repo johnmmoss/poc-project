@@ -12,7 +12,7 @@ export class StatementService {
 
   post(statement:Statement) : Observable<any> {
 
-    let url = 'http://localhost/StatementsTracker/api/statement';
+    let url = 'http://localhost/StatementsTracker.api/api/statements';
 
     return this.httpClient.post(url, statement);
   }

@@ -15,7 +15,8 @@ export class StatementAddComponent implements OnInit {
     title : "",
     startDate: null, 
     endDate: null, 
-    openingBalance:null
+    openingBalance:null,
+    emailAddress:null
   };
 
   constructor(
@@ -32,13 +33,13 @@ export class StatementAddComponent implements OnInit {
 
     if (form.valid) {
       console.log("Whoop! Form is ready for launch.")
+      this.statement.emailAddress = this.userService.securityObject.emailAddress;
+      this.statementService.post(this.statement).subscribe(
+        result => console.log('success: ', result),
+        error => console.log('error: ', error),
+      );
     } else {
       console.log("Whoops... Euston we have an invalid form :(")
     }
-
-    // this.statementService.post(this.statement).subscribe(
-    //   result => console.log('success: ', result),
-    //   error => console.log('error: ', error),
-    // );
   }
 }

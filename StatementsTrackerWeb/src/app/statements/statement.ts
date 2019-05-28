@@ -3,4 +3,5 @@ export interface Statement {
     startDate:Date;
     endDate:Date;
     openingBalance:number;
+    emailAddress:string;
 }
