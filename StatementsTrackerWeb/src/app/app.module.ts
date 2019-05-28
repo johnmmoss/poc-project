@@ -12,6 +12,10 @@ import { HomePageComponent } from './shared/home-page/home-page.component';
 import { AboutComponent } from './shared/about/about.component';
 import { ContactComponent } from './shared/contact/contact.component';
 import { UserService } from './user-management/user.service';
+import { StatementAddComponent } from './statements/statement-add/statement-add.component';
+import { PaymentAddComponent } from './payments/payment-add/payment-add.component';
+import { PaymentListComponent } from './payments/payment-list/payment-list.component';
+import { StatementListComponent } from './statements/statement-list/statement-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { UserService } from './user-management/user.service';
     LoginComponent,
     HomePageComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    StatementAddComponent,
+    PaymentAddComponent,
+    PaymentListComponent,
+    StatementListComponent
   ],
   imports: [
     BrowserModule,

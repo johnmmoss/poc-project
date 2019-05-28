@@ -5,10 +5,17 @@ import { StatementEditComponent } from './statements/statement-edit/statement-ed
 import { HomePageComponent } from './shared/home-page/home-page.component';
 import { AboutComponent } from './shared/about/about.component';
 import { ContactComponent } from './shared/contact/contact.component';
+import { StatementListComponent } from './statements/statement-list/statement-list.component';
+import { StatementAddComponent } from './statements/statement-add/statement-add.component';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
-  {path: "statements", component: StatementEditComponent  },
+  {path: "statements", component: StatementListComponent  },
+  {path: "statements/add", component: StatementAddComponent  },
+  //{path: "statements/{0}/edit", component: StatementListComponent  },
+  //{path: "statements/{0}/payments", component: PaymentListComponent  },
+  //{path: "statements/{0}/payments/add", component: PaymentAddComponent  },
+  //{path: "statements/{0}/payments/{0}/edit", component: PaymentEditComponent  },
   {path: "about", component: AboutComponent},
   {path: "contact", component: ContactComponent},
   {path: "home", component: HomePageComponent},
