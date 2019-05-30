@@ -18,5 +18,4 @@ export class StatementListComponent implements OnInit {
   showAddStatement() {
     this.router.navigate(['/statements/add']);
   }
-
 }

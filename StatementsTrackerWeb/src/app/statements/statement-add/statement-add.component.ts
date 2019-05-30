@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/user-management/user.service';
 import { StatementService } from '../statement.service';
 import { Statement } from '../statement';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-statement-add',
@@ -21,6 +23,7 @@ export class StatementAddComponent implements OnInit {
 
   constructor(
     private userService:UserService,
+    private router:Router,
     private statementService:StatementService
   ) { }
   ngOnInit() {
@@ -41,5 +44,9 @@ export class StatementAddComponent implements OnInit {
     } else {
       console.log("Whoops... Euston we have an invalid form :(")
     }
+  }
+
+  goBack() {
+    this.router.navigate(['/statements']);
   }
 }

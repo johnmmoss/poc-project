@@ -17,6 +17,7 @@ import { PaymentAddComponent } from './payments/payment-add/payment-add.componen
 import { PaymentListComponent } from './payments/payment-list/payment-list.component';
 import { StatementListComponent } from './statements/statement-list/statement-list.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     StatementAddComponent,
     PaymentAddComponent,
     PaymentListComponent,
-    StatementListComponent
+    StatementListComponent,
+    UnauthorisedComponent
   ],
   imports: [
     BrowserModule,
