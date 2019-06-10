@@ -6,6 +6,7 @@ using SimpleTokenService.Data;
 using SimpleTokenService.Data.Entities;
 using SimpleTokenService.Domain.Core;
 using SimpleTokenService.Domain.Interfaces;
+using SimpleTokenService.Domain.Settings;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -18,13 +19,13 @@ namespace SimpleTokenService.Domain
 {
     public class UserService : IUserService
     {
-        private readonly AppSettings _appSettings;
+        private readonly JwtSettings _jwtSettings;
         private readonly UserManager<User> _userManager;
         private readonly TokenContext _context;
 
-        public UserService(IOptions<AppSettings> appSettings, UserManager<User> userManager, TokenContext context)
+        public UserService(JwtSettings jwtSettings, UserManager<User> userManager, TokenContext context)
         {
-            _appSettings = appSettings.Value;
+            _jwtSettings = jwtSettings;
             _userManager = userManager;
             _context = context;
         }
@@ -40,19 +41,23 @@ namespace SimpleTokenService.Domain
             var claims = new Claim[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                //new Claim(JwtRegisteredClaimNames.Jti, await _options.NonceGenerator()),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 //new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(now).ToString(), ClaimValueTypes.Integer64)
              };
 
-            var signingKey = new SigningCredentials(Security.SymmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature);
-            var now = DateTime.Now;
+            var signingKey = new SigningCredentials(
+                   new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtSettings.Key)),
+                   SecurityAlgorithms.HmacSha256Signature
+            );
+
+            var now = DateTime.UtcNow;
 
             var jwt = new JwtSecurityToken(
-               issuer: "ACME", //_options.Issuer,
-               audience: "everyone", //_options.Audience,
+               issuer: _jwtSettings.Issuer,
+               audience: _jwtSettings.Audience,
                claims: claims,
                notBefore: now,
-               expires: now.Add(TimeSpan.FromSeconds(300)),
+               expires: now.AddMinutes(_jwtSettings.MinutesToExpiration),
                signingCredentials: signingKey);
 
             return new JwtSecurityTokenHandler().WriteToken(jwt);

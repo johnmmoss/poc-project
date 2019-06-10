@@ -26,7 +26,7 @@ namespace SimpleTokenService.Api.Controllers
         
         [HttpPost]
         [Route("")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] StatementAddRequest request)
         {
             // Validate the bearer is the request user

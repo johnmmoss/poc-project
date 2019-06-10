@@ -18,6 +18,7 @@ import { PaymentListComponent } from './payments/payment-list/payment-list.compo
 import { StatementListComponent } from './statements/statement-list/statement-list.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component';
+import { JwtInterceptorModule } from './shared/http-interceptor';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.compon
     FormsModule,
     AngularFontAwesomeModule,
     HttpClientModule,
+    JwtInterceptorModule,
     BsDatepickerModule.forRoot()
   ],
   providers: [

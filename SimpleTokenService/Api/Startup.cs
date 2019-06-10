@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
@@ -13,13 +10,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SimpleTokenService.Data;
 using SimpleTokenService.Data.Entities;
 using SimpleTokenService.Domain;
 using SimpleTokenService.Domain.Core;
 using SimpleTokenService.Domain.Interfaces;
+using SimpleTokenService.Domain.Settings;
 
 namespace SimpleTokenService.Api
 {
@@ -39,13 +36,11 @@ namespace SimpleTokenService.Api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Not fecking working :P
-            //var appSettingsSection = Configuration.GetSection("AppSettings");
-            //services.Configure<AppSettings>(appSettingsSection);
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
 
             // TODO:- Fix this up to use log4net
-            services.AddLogging(config =>
-                config.AddConsole().AddDebug()
-                );
+            services.AddLogging(config => config.AddConsole().AddDebug());
 
             var connectionString = "Server=(local)\\sqlexpress;Initial Catalog=SimpleTokenService;Persist Security Info=False; integrated security=True";
             services.AddDbContext<TokenContext>(o => o.UseSqlServer(connectionString));
@@ -54,6 +49,7 @@ namespace SimpleTokenService.Api
               .AddDefaultUI(UIFramework.Bootstrap4)
               .AddEntityFrameworkStores<TokenContext>();
 
+            var jwtSettings = GetJwtSettings();
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -66,12 +62,17 @@ namespace SimpleTokenService.Api
                x.TokenValidationParameters = new TokenValidationParameters
                {
                    ValidateIssuerSigningKey = true,
-                   IssuerSigningKey = Security.SymmetricSecurityKey,
-                   ValidateIssuer = false,
-                   ValidateAudience = false
+                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Key)),
+                   ValidateIssuer = true,
+                   ValidIssuer = jwtSettings.Issuer,
+                   ValidateAudience = true,
+                   ValidAudience = jwtSettings.Audience,
+                   ValidateLifetime = true,
+                   ClockSkew = TimeSpan.FromMinutes(jwtSettings.MinutesToExpiration)
                };
            });
 
+            services.AddSingleton(jwtSettings);
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IStatementService, StatementService>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -99,6 +100,17 @@ namespace SimpleTokenService.Api
 
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        public JwtSettings GetJwtSettings()
+        {
+            var settings = new JwtSettings();
+            settings.Key = Configuration["JwtSettings:key"];
+            settings.Audience= Configuration["JwtSettings:audience"];
+            settings.Issuer= Configuration["JwtSettings:issuer"];
+            settings.MinutesToExpiration = Convert.ToInt32(Configuration["JwtSettings:minutesToExpiration"]);
+
+            return settings;
         }
     }
 }
