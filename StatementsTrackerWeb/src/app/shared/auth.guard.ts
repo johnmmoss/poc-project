@@ -20,10 +20,13 @@ export class AuthGuard implements  CanActivate {
     next:ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {//: Observable<boolean> | Promise<boolean> {
 
-      let claimType: string = next.data["claimType"]
+      let claimType: string = next.data["claimType"] // when we come to check againest claim values...
 
       if (!this.userService.securityObject.isAuthenticated) {
-        this.router.navigateByUrl('/unauthorised');
+        this.router.navigate(['login'],
+        {
+          queryParams: {returnUrl: state.url}
+        });
         return false;
       }
 

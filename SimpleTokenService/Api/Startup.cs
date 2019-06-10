@@ -34,11 +34,7 @@ namespace SimpleTokenService.Api
         {
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            // Not fecking working :P
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
-
+           
             // TODO:- Fix this up to use log4net
             services.AddLogging(config => config.AddConsole().AddDebug());
 
