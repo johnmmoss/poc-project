@@ -19,6 +19,7 @@ import { StatementListComponent } from './statements/statement-list/statement-li
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component';
 import { JwtInterceptorModule } from './shared/http-interceptor';
+import { HasRoleDirective } from './shared/has-role.directive';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { JwtInterceptorModule } from './shared/http-interceptor';
     PaymentAddComponent,
     PaymentListComponent,
     StatementListComponent,
-    UnauthorisedComponent
+    UnauthorisedComponent,
+    HasRoleDirective
   ],
   imports: [
     BrowserModule,

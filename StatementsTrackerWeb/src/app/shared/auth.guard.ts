@@ -16,13 +16,16 @@ export class AuthGuard implements  CanActivate {
       private userService:UserService,
       private router:Router,
     ){ }
+
   canActivate(
     next:ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {//: Observable<boolean> | Promise<boolean> {
 
-      let claimType: string = next.data["claimType"] // when we come to check againest claim values...
+      // For routes limited by role e.g. manage users page
+      let roleValue: string = next.data["roleValue"]; // when we come to check againest claim values...
 
-      if (!this.userService.securityObject.isAuthenticated) {
+      if (!this.userService.securityObject.isAuthenticated &&
+            this.userService.hasRole(roleValue)) {
         this.router.navigate(['login'],
         {
           queryParams: {returnUrl: state.url}

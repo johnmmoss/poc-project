@@ -53,10 +53,7 @@ export class UserService {
 
       this.securityObject.emailAddress = decodedToken.sub;
       this.securityObject.accessToken = token;
-
-      // Fudge these for now
-      this.securityObject.canAddUsers = true;
-      this.securityObject.canAddStatements = true;
+      this.securityObject.roles = decodedToken.role;
 
       localStorage.setItem("accessToken", token);
     }
@@ -67,13 +64,26 @@ export class UserService {
     this.securityObject.accessToken = "";
     this.securityObject.isAuthenticated = false;
 
-    this.securityObject.canAddStatements = false;
-    this.securityObject.canAddUsers = false;
+    this.securityObject.roles = [];
 
     localStorage.removeItem("accessToken");
   }
 
   logOff(): void {
     this.resetSecurityObject();
+  }
+
+  hasRole(roleValue: string) {
+    return this.isRoleValid(roleValue); 
+  }
+
+  private isRoleValid(roleValue:string) {
+    let auth:UserAuth=null;
+    auth = this.securityObject;
+
+    if (auth) {
+      return auth.roles.find(r => r.toLowerCase() == roleValue.toLowerCase());
+    }
+    return false;
   }
 }

@@ -15,12 +15,12 @@ const routes: Routes = [
   {
     path: "statements", component: StatementListComponent,
     canActivate:[AuthGuard],
-    data: {claimType: "canAddStatements"}
+    data: {roleValue: "User"}
   },
   {
     path: "statements/add", component: StatementAddComponent,
     canActivate:[AuthGuard],
-    data: {claimType: "canAddStatements"}
+    data: {roleValue: "User"}
   },
   //{path: "statements/{0}/edit", component: StatementListComponent  },
   //{path: "statements/{0}/payments", component: PaymentListComponent  },

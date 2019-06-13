@@ -42,6 +42,9 @@ namespace SimpleTokenService.Domain
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("role", "Admin"),
+                new Claim("role", "User"),
+                new Claim("role", "SystemAdmin")
                 //new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(now).ToString(), ClaimValueTypes.Integer64)
              };
 
