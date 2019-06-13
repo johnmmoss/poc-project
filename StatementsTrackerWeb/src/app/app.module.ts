@@ -17,6 +17,9 @@ import { PaymentAddComponent } from './payments/payment-add/payment-add.componen
 import { PaymentListComponent } from './payments/payment-list/payment-list.component';
 import { StatementListComponent } from './statements/statement-list/statement-list.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component';
+import { JwtInterceptorModule } from './shared/http-interceptor';
+import { HasRoleDirective } from './shared/has-role.directive';
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     StatementAddComponent,
     PaymentAddComponent,
     PaymentListComponent,
-    StatementListComponent
+    StatementListComponent,
+    UnauthorisedComponent,
+    HasRoleDirective
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     FormsModule,
     AngularFontAwesomeModule,
     HttpClientModule,
+    JwtInterceptorModule,
     BsDatepickerModule.forRoot()
   ],
   providers: [

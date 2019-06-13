@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SimpleTokenService.Api;
 using SimpleTokenService.Api.Models.Accounts;
 using SimpleTokenService.Domain.Interfaces;
+using SimpleTokenService.Domain.Settings;
 
 namespace Api.Controllers
 {
@@ -14,11 +14,15 @@ namespace Api.Controllers
     public class AccountsController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly JwtSettings _jwtSettings;
 
-        public AccountsController(IUserService userService)
+        public AccountsController(JwtSettings jwtSettings, IUserService userService)
         {
             _userService = userService;
+            _jwtSettings = jwtSettings;
         }
+        
+
 
         [Route("signin")]
         [HttpPost]

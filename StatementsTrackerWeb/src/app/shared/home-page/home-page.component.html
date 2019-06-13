@@ -1,10 +1,17 @@
 
 <h2>Home</h2>
 
-
 <div *ngIf="loggedInUser" >
-
 
     <h3>Boom!</h3>
 
+    <ng-container *hasRole="'Admin'">
+        <h2>I am an admin!!!</h2>
+    </ng-container>
+    <ng-container *hasRole="'User'">
+        <h2>I am an user!!!</h2>
+    </ng-container>
+    <ng-container *hasRole="'SystemAdmin'">
+        <h2>I am an SystemAdmin!!!</h2>
+    </ng-container>
 </div>
