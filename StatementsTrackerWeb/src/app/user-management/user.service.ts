@@ -55,6 +55,10 @@ export class UserService {
       this.securityObject.accessToken = token;
       this.securityObject.roles = decodedToken.role;
 
+      console.log(decodedToken.role);
+
+     
+
       localStorage.setItem("accessToken", token);
     }
   }
@@ -77,13 +81,21 @@ export class UserService {
     return this.isRoleValid(roleValue); 
   }
 
-  private isRoleValid(roleValue:string) {
+  private isRoleValid(roleValue:any) {
+
     let auth:UserAuth=null;
     auth = this.securityObject;
+    let multipleRoles = auth.roles.constructor === Array;
 
-    if (auth) {
+    // If we have multiple roles, then is an array BUT if we have only a single role,
+    //  then auth.roles is actually a string ???
+
+    if (multipleRoles) {
+      console.log("Processing multiple...")
       return auth.roles.find(r => r.toLowerCase() == roleValue.toLowerCase());
+    } else { // assume is string
+      console.log("Processing SINGLE...");
+      return roleValue.toLowerCase() == auth.roles;
     }
-    return false;
   }
 }

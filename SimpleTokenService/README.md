@@ -68,3 +68,15 @@ Host: localhost:44377
 Content-Length: 0
 Authorization: bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2hubW1vc3NAZ21haWwuY29tIiwibmJmIjoxNTU4MzY1NjA2LCJleHAiOjE1NTgzNjU5MDYsImlzcyI6IkFDTUUiLCJhdWQiOiJldmVyeW9uZSJ9.cdXOdUjUe0UNWoS0hGc-IcFCdAMIGFJCdu8eEjNx5SE
 ```
+
+
+### User Roles
+
+There are three different roles which provide different functionality.  
+The main journey concentrated on for now is the User.
+
+| Email                 | Role          |  Password     |
+|-----------------------|---------------|---------------|
+| alice@email.com       | Admin         |   Password1!  |
+| bob@email.com         | User          |   Password1!  | 
+|johnmmoss@gmail.com    | SystemAdmin   |   Password1!  | 

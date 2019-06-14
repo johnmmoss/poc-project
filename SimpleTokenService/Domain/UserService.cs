@@ -38,15 +38,18 @@ namespace SimpleTokenService.Domain
 
             if (!await _userManager.CheckPasswordAsync(user, password)) return null;
 
-            var claims = new Claim[]
+            var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("role", "Admin"),
-                new Claim("role", "User"),
-                new Claim("role", "SystemAdmin")
-                //new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(now).ToString(), ClaimValueTypes.Integer64)
-             };
+            };
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim("role", role));
+            }
 
             var signingKey = new SigningCredentials(
                    new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtSettings.Key)),
