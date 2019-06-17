@@ -70,7 +70,7 @@ namespace SimpleTokenService.Api.Controllers
 
         [HttpGet]
         [Route("{emailAddress}")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> GetAll(string emailAddress)
         {
             // TODO:- Add some authorisation here e.g. Check the roles to ensure who is allowed to get!
