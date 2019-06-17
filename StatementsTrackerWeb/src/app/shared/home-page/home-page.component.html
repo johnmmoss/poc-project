@@ -1,17 +1,21 @@
 
 <h2>Home</h2>
 
-<div *ngIf="loggedInUser" >
-
-    <h3>Boom!</h3>
-
+<ng-container *ngIf="loggedInUser" >
+    <!-- TBF - this is not a great use of the directive! -->
     <ng-container *hasRole="'Admin'">
-        <h2>I am an admin!!!</h2>
+        <div class="alert alert-warning" role="alert">
+            Hello <strong>{{ emailAddress }}</strong>, you are an <strong>{{roleType}}</strong>            
+        </div>
     </ng-container>
     <ng-container *hasRole="'User'">
-        <h2>I am an user!!!</h2>
+        <div class="alert alert-info" role="alert">
+            Hello {{ emailAddress }}, you are an {{roleType}}            
+        </div>
     </ng-container>
     <ng-container *hasRole="'SystemAdmin'">
-        <h2>I am an SystemAdmin!!!</h2>
+        <div class="alert alert-danger" role="alert">
+            Hello {{ emailAddress }}, you are an {{roleType}}            
+        </div>
     </ng-container>
-</div>
+</ng-container>

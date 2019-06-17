@@ -15,6 +15,7 @@ export class HasRoleDirective {
     @Input() set hasRole(roleType:any) {
 
         // *hasRole="'User'"
+        console.log('RoleType:'+roleType)
         if(this.userService.hasRole(roleType)) {
             this.viewContainer.createEmbeddedView(this.templateRef);
         } else {

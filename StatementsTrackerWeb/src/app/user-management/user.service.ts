@@ -57,8 +57,6 @@ export class UserService {
 
       console.log(decodedToken.role);
 
-     
-
       localStorage.setItem("accessToken", token);
     }
   }
@@ -89,13 +87,10 @@ export class UserService {
 
     // If we have multiple roles, then is an array BUT if we have only a single role,
     //  then auth.roles is actually a string ???
-
     if (multipleRoles) {
-      console.log("Processing multiple...")
       return auth.roles.find(r => r.toLowerCase() == roleValue.toLowerCase());
     } else { // assume is string
-      console.log("Processing SINGLE...");
-      return roleValue.toLowerCase() == auth.roles;
+      return roleValue.toLowerCase() == auth.roles.toLowerCase();
     }
   }
 }
