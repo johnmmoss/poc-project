@@ -6,6 +6,8 @@ using SimpleTokenService.Api.Models.Statements;
 using SimpleTokenService.Data.Entities;
 using SimpleTokenService.Domain;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -64,6 +66,33 @@ namespace SimpleTokenService.Api.Controllers
             }
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("{emailAddress}")]
+        //[Authorize]
+        public async Task<IActionResult> GetAll(string emailAddress)
+        {
+            // TODO:- Add some authorisation here e.g. Check the roles to ensure who is allowed to get!
+
+            if (string.IsNullOrEmpty(emailAddress))
+            {
+                return BadRequest();
+            }
+
+            var statements = await _statementService.GetAllByEmailAddress(emailAddress);
+
+
+            var response = (statements as List<Statement>).Select(x => new StatementsGetAllResponse()
+                                {
+                                    Title = x.Title,
+                                    StartDate = x.StartDate,
+                                    EndDate = x.EndDate,
+                                    OpeningBalance = x.OpeningBalance,
+                                    ClosingBalance = x.ClosingBalance
+                                });
+
+            return Ok(response);
         }
     }
 }

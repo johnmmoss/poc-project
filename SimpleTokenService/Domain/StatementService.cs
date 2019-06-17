@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using SimpleTokenService.Data.Entities;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace SimpleTokenService.Domain
 {
@@ -17,7 +18,7 @@ namespace SimpleTokenService.Domain
 
         public async Task Add(string email, Statement statement)
         {
-            var users =  await _userRepository.FindByAsync(x => x.NormalizedEmail == email.ToUpper(), x => x.Statements);
+            var users = await _userRepository.FindByAsync(x => x.NormalizedEmail == email.ToUpper(), x => x.Statements);
 
             var user = users.FirstOrDefault();
 
@@ -29,6 +30,13 @@ namespace SimpleTokenService.Domain
             statement.UserId = user.Id;
 
             await _statementRepository.CreateAsync(statement);
+        }
+
+        public async Task<IEnumerable<Statement>> GetAllByEmailAddress(string emailAddress)
+        {
+            var normalizedEmailAddress = emailAddress.ToUpper();
+
+            return await _statementRepository.FindByAsync(x => x.User.NormalizedEmail == normalizedEmailAddress);
         }
     }
 }

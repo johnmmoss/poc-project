@@ -1,4 +1,5 @@
 ﻿using SimpleTokenService.Data.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SimpleTokenService.Domain
@@ -6,5 +7,7 @@ namespace SimpleTokenService.Domain
     public interface IStatementService
     {
         Task Add(string email, Statement statement);
+
+        Task<IEnumerable<Statement>> GetAllByEmailAddress(string emailAddress);
     }
 }
