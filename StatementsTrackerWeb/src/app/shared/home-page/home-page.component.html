@@ -1,8 +1,12 @@
 
-<h2>Home</h2>
+<!-- TBF - this is not a great use of the directive! -->
+<div class="row">
+    <div class="col-md-12">
+        &nbsp;
+    </div>
+</div>
 
-<ng-container *ngIf="loggedInUser" >
-    <!-- TBF - this is not a great use of the directive! -->
+<div *ngIf="loggedInUser" >
     <ng-container *hasRole="'Admin'">
         <div class="alert alert-warning" role="alert">
             Hello <strong>{{ emailAddress }}</strong>, you are an <strong>{{roleType}}</strong>            
@@ -18,4 +22,21 @@
             Hello {{ emailAddress }}, you are an {{roleType}}            
         </div>
     </ng-container>
-</ng-container>
+</div>
+
+
+<app-title-row [title]="'Welcome to Statements Tracker'" [subHeading]="'The smart way to track all your spending!'"></app-title-row>
+
+
+<div class="row">
+  <div class="col-lg-3">
+    &nbsp;
+  </div>
+
+  <div class="col-lg-9">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+  </div>
+</div>
+

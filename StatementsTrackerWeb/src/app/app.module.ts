@@ -20,6 +20,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.component';
 import { JwtInterceptorModule } from './shared/http-interceptor';
 import { HasRoleDirective } from './shared/has-role.directive';
+import { TitleRowComponent } from './shared/components/title-row/title-row.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { HasRoleDirective } from './shared/has-role.directive';
     PaymentListComponent,
     StatementListComponent,
     UnauthorisedComponent,
-    HasRoleDirective
+    HasRoleDirective,
+    TitleRowComponent
   ],
   imports: [
     BrowserModule,
