@@ -1,17 +1,39 @@
-<div class="row">
-  <div class="col-lg-3">
-  </div>
-  <div class="col-lg-9">
-    <h1 class="mt-5">Statements</h1>
-    <p class="lead">All your Statements</p>
 
-    <button class="btn btn-primary" type="submit" (click)="showAddStatement()">Add Statement</button>
+<app-title-row [title]="'Statements'" [subHeading]="'All your statments'"></app-title-row>
+
+<div class="row">
+  <div class="col-lg-3"> &nbsp; </div>
+  <div class="col-lg-9">
+    <ng-container *ngIf="statements.length > 0">
+      
+      <table class="table table-hover">
+        <tr>
+          <th>Title </th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Opening Balance</th>
+          <th>Closing Balance</th>
+        </tr>
+        <tr *ngFor="let statement of statements">
+          <td>{{ statement.title }}</td>
+          <td>{{ statement.startDate | date: 'dd MMM yyyy'}}</td>
+          <td>{{ statement.endDate| date: 'dd MMM yyyy'}}</td>
+          <td>{{ statement.openingBalance }}</td>
+          <td>{{ statement.closingBalance }}</td>
+        </tr>
+      </table>
+
+    </ng-container>
+
+    <div class="alert alert-warning" role="alert" *ngIf="statements.length < 1">
+      You dont have any statements created. Click Add Statement below to get started!
+    </div>
+
   </div>
 </div>    
-
 <div class="row">
-  <div class="">
-  <form class="form-inline">
-  </form>
-</div>
-</div>
+  <div class="col-lg-3"> &nbsp; </div>
+    <div class="col-lg-9">
+      <button class="btn btn-primary" type="submit" (click)="showAddStatement()">Add Statement</button>
+    </div>
+  </div>

@@ -68,6 +68,7 @@ namespace SimpleTokenService.Api.Controllers
             return Ok();
         }
 
+        //Usage: http://localhost/StatementsTracker.api/api/statements/bob@email.com
         [HttpGet]
         [Route("{emailAddress}")]
         [Authorize]
