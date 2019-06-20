@@ -23,6 +23,5 @@ export class HomePageComponent implements OnInit {
       this.roleType = this.userService.securityObject.roles;
       this.emailAddress = this.userService.securityObject.emailAddress;
     }
-
   }
 }

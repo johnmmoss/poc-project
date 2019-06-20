@@ -66,7 +66,7 @@ export class UserService {
     this.securityObject.accessToken = "";
     this.securityObject.isAuthenticated = false;
 
-    this.securityObject.roles = [];
+    this.securityObject.roles = "";
 
     localStorage.removeItem("accessToken");
   }
@@ -88,7 +88,8 @@ export class UserService {
     // If we have multiple roles, then is an array BUT if we have only a single role,
     //  then auth.roles is actually a string ???
     if (multipleRoles) {
-      return auth.roles.find(r => r.toLowerCase() == roleValue.toLowerCase());
+      throw new TypeError("Found multiple roles");
+      //return auth.roles.find(r => r.toLowerCase() == roleValue.toLowerCase());
     } else { // assume is string
       return roleValue.toLowerCase() == auth.roles.toLowerCase();
     }

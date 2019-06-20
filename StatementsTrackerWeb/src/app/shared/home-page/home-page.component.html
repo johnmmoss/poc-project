@@ -1,29 +1,25 @@
 
-<!-- TBF - this is not a great use of the directive! -->
+
 <div class="row">
-    <div class="col-md-12">
-        &nbsp;
+<!-- TBF - this is not a great use of the directive! -->
+    <div *ngIf="loggedInUser" class="col-md-6 offset-md-3 user-section" >
+        <ng-container *hasRole="'Admin'">
+            <div class="alert alert-warning" role="alert">
+                Hello <strong>{{ emailAddress }}</strong>, you are an <strong>{{roleType}}</strong>            
+            </div>
+        </ng-container>
+        <ng-container *hasRole="'User'">
+            <div class="alert alert-info" role="alert">
+                Hello {{ emailAddress }}, you are an {{roleType}}            
+            </div>
+        </ng-container>
+        <ng-container *hasRole="'SystemAdmin'">
+            <div class="alert alert-danger" role="alert">
+                Hello {{ emailAddress }}, you are an {{roleType}}            
+            </div>
+        </ng-container>
     </div>
 </div>
-
-<div *ngIf="loggedInUser" >
-    <ng-container *hasRole="'Admin'">
-        <div class="alert alert-warning" role="alert">
-            Hello <strong>{{ emailAddress }}</strong>, you are an <strong>{{roleType}}</strong>            
-        </div>
-    </ng-container>
-    <ng-container *hasRole="'User'">
-        <div class="alert alert-info" role="alert">
-            Hello {{ emailAddress }}, you are an {{roleType}}            
-        </div>
-    </ng-container>
-    <ng-container *hasRole="'SystemAdmin'">
-        <div class="alert alert-danger" role="alert">
-            Hello {{ emailAddress }}, you are an {{roleType}}            
-        </div>
-    </ng-container>
-</div>
-
 
 <app-title-row [title]="'Welcome to Statements Tracker'" [subHeading]="'The smart way to track all your spending!'"></app-title-row>
 
