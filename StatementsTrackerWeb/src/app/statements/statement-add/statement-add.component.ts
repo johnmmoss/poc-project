@@ -38,7 +38,10 @@ export class StatementAddComponent implements OnInit {
       console.log("Whoop! Form is ready for launch.")
       this.statement.emailAddress = this.userService.securityObject.emailAddress;
       this.statementService.post(this.statement).subscribe(
-        result => console.log('success: ', result),
+        result => {
+            console.log('success: ', result);
+            this.router.navigate(['/statements']);
+        },
         error => console.log('error: ', error),
       );
     } else {
