@@ -32,6 +32,7 @@ export class StatementEditComponent implements OnInit {
   };
   
   ngOnInit() {
+    console.log("Loading edit statements screen...")
   }
 
   onSubmit(form: NgForm) {

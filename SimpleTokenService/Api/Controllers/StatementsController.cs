@@ -86,6 +86,7 @@ namespace SimpleTokenService.Api.Controllers
 
             var response = (statements as List<Statement>).Select(x => new StatementsGetAllResponse()
                                 {
+                                    Id = x.Id,
                                     Title = x.Title,
                                     StartDate = x.StartDate,
                                     EndDate = x.EndDate,

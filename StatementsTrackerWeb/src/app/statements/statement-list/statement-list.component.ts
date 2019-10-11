@@ -34,4 +34,8 @@ export class StatementListComponent implements OnInit {
   showAddStatement() {
     this.router.navigate(['/statements/add']);
   }
+
+  editStatement(statement:Statement) {
+    this.router.navigate(['/statements/'+ statement.id +'/edit']);
+  }
 }

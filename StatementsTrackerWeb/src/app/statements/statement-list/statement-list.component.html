@@ -1,5 +1,5 @@
 
-<app-title-row [title]="'Statements'" [subHeading]="'All your statments'"></app-title-row>
+<app-title-row [title]="'Statements'" [subHeading]="'All your statements'"></app-title-row>
 
 <div class="row">
   <div class="col-lg-3"> &nbsp; </div>
@@ -15,6 +15,7 @@
             <th>End Date</th>
             <th>Opening Balance</th>
             <th>Closing Balance</th>
+            <th></th>
           </tr>
           <tr *ngFor="let statement of statements">
             <td>{{ statement.title }}</td>
@@ -22,6 +23,9 @@
             <td>{{ statement.endDate| date: 'dd MMM yyyy'}}</td>
             <td>{{ statement.openingBalance | currency: 'GBP' }}</td>
             <td>{{ statement.closingBalance | currency: 'GBP' }}</td>
+            <td>
+              <a class="btn btn-light" (click)="editStatement(statement)" >Edit</a>
+            </td>
           </tr>
         </table>
 

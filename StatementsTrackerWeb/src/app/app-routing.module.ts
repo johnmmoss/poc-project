@@ -20,7 +20,7 @@ const routes: Routes = [
     canActivate:[AuthGuard],
     data: {roleValue: "User"}
   },
-  //{path: "statements/{0}/edit", component: StatementListComponent  },
+  {path: "statements/:id/edit", component: StatementEditComponent},
   //{path: "statements/{0}/payments", component: PaymentListComponent  },
   //{path: "statements/{0}/payments/add", component: PaymentAddComponent  },
   //{path: "statements/{0}/payments/{0}/edit", component: PaymentEditComponent  },

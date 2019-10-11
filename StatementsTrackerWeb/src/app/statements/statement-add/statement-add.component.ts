@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class StatementAddComponent implements OnInit {
 
   statement:Statement = {
+    id: 0,
     title : "",
     startDate: null, 
     endDate: null, 
