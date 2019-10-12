@@ -9,5 +9,7 @@ namespace SimpleTokenService.Domain
         Task Add(string email, Statement statement);
 
         Task<IEnumerable<Statement>> GetAllByEmailAddress(string emailAddress);
+
+        Task<Statement> GetById(int id);
     }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Payment } from '../../payments/payment';
 import { StatementService } from '../statement.service';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Statement } from '../statement';
 
 @Component({
   selector: 'app-statement-edit',
@@ -10,7 +12,20 @@ import { NgForm } from '@angular/forms';
 })
 export class StatementEditComponent implements OnInit {
 
-  constructor(private statementService:StatementService) { }
+  id:number;
+  statement:Statement = {
+    id: 0,
+    title : "",
+    startDate: null, 
+    endDate: null, 
+    openingBalance:null,
+    emailAddress:null
+  };
+
+  constructor(private statementService:StatementService,
+              private router:Router,
+              private route:ActivatedRoute
+  ){}
   
   originalPayment:Payment = {
     description:"Lakes Holiday",
@@ -33,6 +48,16 @@ export class StatementEditComponent implements OnInit {
   
   ngOnInit() {
     console.log("Loading edit statements screen...")
+    this.id = +this.route.snapshot.paramMap.get('id');
+    console.log("Found Id: " + this.id);
+    this.statementService.get(this.id)
+    .subscribe(
+      response => {
+        console.log(response);
+        this.statement = response;
+      },
+      (err:any) => console.log("Error: "+ err)
+    )
   }
 
   onSubmit(form: NgForm) {
@@ -43,4 +68,10 @@ export class StatementEditComponent implements OnInit {
     //  error => console.log('error: ', error),
     //);
   }
+
+
+  goBack() {
+    this.router.navigate(['/statements']);
+  }
+
 }

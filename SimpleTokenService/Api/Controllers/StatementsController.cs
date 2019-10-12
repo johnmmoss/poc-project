@@ -25,7 +25,14 @@ namespace SimpleTokenService.Api.Controllers
             _logger = logger;
             _statementService = statementService;
         }
-        
+
+        /** 
+         * TODO: Add customer Authorisation middleware 
+         *       Should check the logged in user, and their role and decide if they can perform
+         *       the action that they are trying to do. This is essentially a policy
+         *       ref: https://vimeo.com/223982185
+         * 
+         * */
         [HttpPost]
         [Route("")]
         [Authorize]
@@ -33,7 +40,7 @@ namespace SimpleTokenService.Api.Controllers
         {
             // Validate the bearer is the request user
             var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if ( request.EmailAddress.ToLower() != claim.Value.ToLower())
+            if (request.EmailAddress.ToLower() != claim.Value.ToLower())
             {
                 _logger.LogWarning($"The bearer token email ${claim.Value} does not match the request email ${request.EmailAddress}");
 
@@ -43,7 +50,7 @@ namespace SimpleTokenService.Api.Controllers
             // Current dates coming through as US :( need to sort this out at some point
             var usStartDate = request.StartDate.Value;
             var usEndDate = request.EndDate.Value;
-            
+
             var newStatement = new Statement()
             {
                 Title = request.Title,
@@ -85,14 +92,48 @@ namespace SimpleTokenService.Api.Controllers
 
 
             var response = (statements as List<Statement>).Select(x => new StatementsGetAllResponse()
-                                {
-                                    Id = x.Id,
-                                    Title = x.Title,
-                                    StartDate = x.StartDate,
-                                    EndDate = x.EndDate,
-                                    OpeningBalance = x.OpeningBalance,
-                                    ClosingBalance = x.ClosingBalance
-                                });
+            {
+                Id = x.Id,
+                Title = x.Title,
+                StartDate = x.StartDate,
+                EndDate = x.EndDate,
+                OpeningBalance = x.OpeningBalance,
+                ClosingBalance = x.ClosingBalance
+            });
+
+            return Ok(response);
+        }
+
+
+        //Usage: http://localhost/StatementsTracker.api/api/statements/bob@email.com
+        [HttpGet]
+        [Route("user/{id}")]
+        [Authorize]
+        public async Task<IActionResult> Get(int id)
+        {
+            if (id < 1)
+            {
+                return BadRequest();
+            }
+
+            // For now, just return which ever statement is requested
+            // This needs securing by role based authorisation using some middleware (or something)0
+            var statement = await _statementService.GetById(id);
+
+            if (statement == null)
+            {
+                return NotFound();
+            }
+
+            var response = new StatementsGetAllResponse()
+            {
+                Id = statement.Id,
+                Title = statement.Title,
+                StartDate = statement.StartDate,
+                EndDate = statement.EndDate,
+                OpeningBalance = statement.OpeningBalance,
+                ClosingBalance = statement.ClosingBalance
+            };
 
             return Ok(response);
         }

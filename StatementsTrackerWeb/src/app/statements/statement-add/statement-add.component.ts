@@ -27,6 +27,7 @@ export class StatementAddComponent implements OnInit {
     private router:Router,
     private statementService:StatementService
   ) { }
+
   ngOnInit() {
 
   }

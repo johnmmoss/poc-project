@@ -10,6 +10,13 @@ export class StatementService {
 
   constructor(private httpClient:HttpClient) { }
 
+  get(id: number): Observable<Statement> {
+
+    let url =  `http://localhost/StatementsTracker.api/api/statements/user/${id}`;
+
+    return this.httpClient.get<Statement>(url);
+  }
+
   post(statement:Statement) : Observable<any> {
 
     let url = 'http://localhost/StatementsTracker.api/api/statements';

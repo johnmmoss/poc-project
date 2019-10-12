@@ -75,6 +75,8 @@ namespace SimpleTokenService.Domain
 
         private Expression<Func<TEntity, bool>> BuildIdLambda(dynamic id)
         {
+            throw new NotImplementedException("This code is for StatementId PK not Id - need to update");
+
             var item = Expression.Parameter(typeof(TEntity), "entity");
             var prop = Expression.Property(item, typeof(TEntity).Name + "Id");
             var value = Expression.Constant(id);

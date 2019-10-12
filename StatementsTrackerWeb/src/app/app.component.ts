@@ -35,7 +35,6 @@ export class AppComponent implements OnInit {
   }
   loggedInUser() {
     var isLoggedIn = this.userService.securityObject.isAuthenticated;
-    console.log("UserIsLoggedIn:" + isLoggedIn);
     return isLoggedIn ;
   }
 }

@@ -38,5 +38,12 @@ namespace SimpleTokenService.Domain
 
             return await _statementRepository.FindByAsync(x => x.User.NormalizedEmail == normalizedEmailAddress);
         }
+
+        public async Task<Statement> GetById(int id)
+        {
+            var result = await _statementRepository.FindByAsync(x => x.Id == id);
+
+            return result.FirstOrDefault(); 
+        }
     }
 }
