@@ -18,7 +18,7 @@ export class StatementAddComponent implements OnInit {
     title : "",
     startDate: null, 
     endDate: null, 
-    openingBalance:null,
+    openingBalance:0,
     emailAddress:null
   };
 
@@ -29,7 +29,6 @@ export class StatementAddComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
   }
 
   onSubmit(form: NgForm) {

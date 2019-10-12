@@ -55,6 +55,8 @@ export class StatementEditComponent implements OnInit {
       response => {
         console.log(response);
         this.statement = response;
+        this.statement.startDate = new Date(response.startDate);
+        this.statement.endDate = new Date(response.endDate);
       },
       (err:any) => console.log("Error: "+ err)
     )
@@ -69,9 +71,7 @@ export class StatementEditComponent implements OnInit {
     //);
   }
 
-
   goBack() {
     this.router.navigate(['/statements']);
   }
-
 }
