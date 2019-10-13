@@ -11,5 +11,6 @@ namespace SimpleTokenService.Domain
         Task<IEnumerable<Statement>> GetAllByEmailAddress(string emailAddress);
 
         Task<Statement> GetById(int id);
+        Task Update(Statement newEntity);
     }
 }

@@ -45,5 +45,10 @@ namespace SimpleTokenService.Domain
 
             return result.FirstOrDefault(); 
         }
+
+        public async Task Update(Statement newEntity)
+        {
+            await _statementRepository.UpdateAsync(newEntity);
+        }
     }
 }

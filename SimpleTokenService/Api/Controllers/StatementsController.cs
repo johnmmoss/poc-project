@@ -33,6 +33,7 @@ namespace SimpleTokenService.Api.Controllers
          *       ref: https://vimeo.com/223982185
          * 
          * */
+
         [HttpPost]
         [Route("")]
         [Authorize]
@@ -75,7 +76,30 @@ namespace SimpleTokenService.Api.Controllers
             return Ok();
         }
 
-        //Usage: http://localhost/StatementsTracker.api/api/statements/bob@email.com
+        [HttpPut]
+        [Route("")]
+        [Authorize]
+        public async Task<IActionResult> Put([FromBody] StatementUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var newEntity = new Statement()
+            {
+                Id = request.Id,
+                Title = request.Title,
+                OpeningBalance = request.OpeningBalance.Value,
+                StartDate = request.StartDate.Value,
+                EndDate = request.EndDate.Value,
+            };
+
+            await _statementService.Update(newEntity);
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("{emailAddress}")]
         [Authorize]
@@ -104,8 +128,6 @@ namespace SimpleTokenService.Api.Controllers
             return Ok(response);
         }
 
-
-        //Usage: http://localhost/StatementsTracker.api/api/statements/bob@email.com
         [HttpGet]
         [Route("user/{id}")]
         [Authorize]
