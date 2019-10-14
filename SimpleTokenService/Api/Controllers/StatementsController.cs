@@ -95,7 +95,14 @@ namespace SimpleTokenService.Api.Controllers
                 EndDate = request.EndDate.Value,
             };
 
-            await _statementService.Update(newEntity);
+            try
+            {
+                await _statementService.Update(newEntity);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
 
             return Ok();
         }

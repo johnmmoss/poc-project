@@ -48,7 +48,11 @@ namespace SimpleTokenService.Domain
 
         public async Task Update(Statement newEntity)
         {
-            await _statementRepository.UpdateAsync(newEntity);
+            var current = (await _statementRepository.FindByAsync(x => x.Id == newEntity.Id)).FirstOrDefault();
+
+            current.Title = newEntity.Title;
+
+            await _statementRepository.UpdateAsync(current);
         }
     }
 }

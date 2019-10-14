@@ -24,6 +24,13 @@ export class StatementService {
     return this.httpClient.post(url, statement);
   }
 
+  update(statement:Statement) : Observable<any> {
+
+    let url = 'http://localhost/StatementsTracker.api/api/statements';
+
+    return this.httpClient.put(url, statement);
+  }
+
   getAll(emailAddress:string) : Observable<any> {
 
     let url = `http://localhost/StatementsTracker.api/api/statements/${emailAddress}`

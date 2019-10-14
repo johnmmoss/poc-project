@@ -4,6 +4,7 @@ import { StatementService } from '../statement.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Statement } from '../statement';
+import { UserService } from 'src/app/user-management/user.service';
 
 @Component({
   selector: 'app-statement-edit',
@@ -23,6 +24,7 @@ export class StatementEditComponent implements OnInit {
   };
 
   constructor(private statementService:StatementService,
+              private userService:UserService,
               private router:Router,
               private route:ActivatedRoute
   ){}
@@ -62,16 +64,26 @@ export class StatementEditComponent implements OnInit {
     )
   }
 
-  onSubmit(form: NgForm) {
-    console.log('onSubmit:', form.valid)
-
-    //this.statementService.post(.payment).subscribe(
-    //  result => console.log('success: ', result),
-    //  error => console.log('error: ', error),
-    //);
-  }
-
   goBack() {
     this.router.navigate(['/statements']);
   }
+
+  onSubmit(form: NgForm) {
+
+      console.log('onSubmit:', form.valid)
+
+      if (form.valid) {
+          console.log("Whoop! Form is ready for launch.")
+          this.statement.emailAddress = this.userService.securityObject.emailAddress;
+          this.statementService.update(this.statement).subscribe(
+            result => {
+                console.log('success: ', result);
+                this.router.navigate(['/statements']);
+            },
+            error => console.log('error: ', error),
+          );
+      } else {
+          console.log("Whoops... Euston we have an invalid form :(")
+      }
+    }
 }
