@@ -31,6 +31,10 @@ namespace SimpleTokenService.Api.Controllers
          *       Should check the logged in user, and their role and decide if they can perform
          *       the action that they are trying to do. This is essentially a policy
          *       ref: https://vimeo.com/223982185
+         *       
+         * - Filter out multiple full stops for number value
+         * - Add some error handling after posting back from the server. At the moment just fails quietly
+         * - Why do you have to keep logging in all the time?
          * 
          * */
 

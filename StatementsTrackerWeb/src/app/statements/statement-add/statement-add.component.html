@@ -49,6 +49,7 @@
        <div class="form-group">
         <label for="openingBalance">Opening Balance</label>
         <input class="form-control" id="openingBalance" name="openingBalance" [(ngModel)]="statement.openingBalance"
+          pKeyFilter="num"
           #openingBalanceField="ngModel" required [class.field-error]="form.submitted && openingBalanceField.invalid" />
         <!--div [hidden]="openingBalanceField.valid || openingBalanceField.untouched" -->
         <div [hidden]="!form.submitted || openingBalanceField.valid" class="alert alert-danger">

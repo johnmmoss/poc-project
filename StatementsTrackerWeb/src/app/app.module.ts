@@ -19,7 +19,7 @@ import { UnauthorisedComponent } from './shared/unauthorised/unauthorised.compon
 import { JwtInterceptorModule } from './shared/http-interceptor';
 import { HasRoleDirective } from './shared/has-role.directive';
 import { TitleRowComponent } from './shared/components/title-row/title-row.component';
-
+import {KeyFilterModule} from 'primeng/keyfilter';
 
 @NgModule({
   declarations: [
@@ -42,6 +42,7 @@ import { TitleRowComponent } from './shared/components/title-row/title-row.compo
     AngularFontAwesomeModule,
     HttpClientModule,
     JwtInterceptorModule,
+    KeyFilterModule,
     BsDatepickerModule.forRoot()
   ],
   providers: [
