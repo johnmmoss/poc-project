@@ -51,6 +51,9 @@ namespace SimpleTokenService.Domain
             var current = (await _statementRepository.FindByAsync(x => x.Id == newEntity.Id)).FirstOrDefault();
 
             current.Title = newEntity.Title;
+            current.EndDate = newEntity.EndDate;
+            current.StartDate = newEntity.StartDate;
+            current.OpeningBalance = newEntity.OpeningBalance;
 
             await _statementRepository.UpdateAsync(current);
         }
