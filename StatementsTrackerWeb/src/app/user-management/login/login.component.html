@@ -1,4 +1,10 @@
 <div class="container login-container">
+
+  <ng-container *ngIf="httpResponseError" >
+    <div class="alert alert-danger">
+     <h3>HttpResponseError {{ httpResponseError.status}}</h3> {{ httpResponseError.error }}</div>
+  </ng-container>
+
   <div class="row">
     <div class="col-md-3">&nbsp;</div>
     <div class="col-md-6 login-form-1">

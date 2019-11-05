@@ -150,7 +150,7 @@ namespace SimpleTokenService.Api.Controllers
             }
 
             // For now, just return which ever statement is requested
-            // This needs securing by role based authorisation using some middleware (or something)0
+            // This needs securing by role based authorisation using some middleware (or something)
             var statement = await _statementService.GetById(id);
 
             if (statement == null)

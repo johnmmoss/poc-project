@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   authFailed:boolean = false;
   userLogin:UserLogin = new UserLogin();
   userResponse:any;
+  httpResponseError:any;
 
   constructor(
     private userService:UserService,
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
   login(form:NgForm) {
 
     this.authFailed = false;
+    this.httpResponseError = null;
 
     if (form.valid) {
       this.userService.login(this.userLogin).subscribe(
@@ -44,7 +46,11 @@ export class LoginComponent implements OnInit {
             this.authFailed = !securityObject.isAuthenticated;
           }
         },
-        error => console.log(error)
+        error => 
+      {
+        this.httpResponseError = error;
+          console.log(error)
+        }
       );
     }
   }
